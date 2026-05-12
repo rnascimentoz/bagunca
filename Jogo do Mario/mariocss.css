@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.varela{
+    font-family: 'Press Start 2P', cursive;
+    
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+
+#score{
+    font-family: 'Press Start 2P', cursive;
+    z-index: 5;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    background-color: beige;
+    text-align: center;
+}
+
+#time{
+    font-family: 'Press Start 2P', cursive;
+    z-index: 5;
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    background-color: beige;
+    padding: 20px;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+
+#bowser-health{
+    width: 200px;
+    height: 20px;
+    background-color: red;
+    border: 2px solid black;
+    z-index: 10;
+    position: absolute;
+}
+
+#bowser-health::after{
+    content: '';
+    display: block;
+    height: 100%;
+    background-color: green;
+    width: var(--health);
+    transition: width 0.3s;
+}
+
+.fire{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #ff4500, #ff6347, #ffa500);
+    border-radius: 50%;
+    z-index: 4;
+    box-shadow: 0 0 10px #ff4500;
+}
+
+.fire::before{
+    content: '😈';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+.fire{
+    animation: fire-bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes fire-bounce{
+    0%, 100% { bottom: 40px; }
+    50% { bottom: 60px; }
+}
+body{
+    background: linear-gradient(rgb(35, 160, 35),rgb(54, 22, 1));
+}
+
+body.mansion-body{
+    background: #000000;
+}
+
+.jogo{
+    width: 100%;
+    height: 500px;
+    border-bottom: 25px solid rgb(52, 197, 52);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87CEEB, #E0F6FF);
+    z-index: 1;
+}
+
+.jogo.mansion-bg{
+    background: linear-gradient(180deg, #292828 0%, #310505 40%, #000000 100%);
+    border-bottom-color: #300000;
+}
+
+.clouds{
+    position: absolute;
+    width: 550px;
+    animation: clouds 20s linear infinite;
+    z-index: 2;
+}
+
+.jogo.mansion-bg .clouds,
+.jogo.mansion-bg .tree{
+    filter: grayscale(80%) brightness(0.85);
+    opacity: 0.8;
+}
+
+
+
+#final-victory-banner{
+    display: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 20px auto 0;
+    padding: 24px;
+    background: radial-gradient(circle at top, #fff4d9 0%, #ffd7a3 40%, #ffb86d 100%);
+    border: 6px solid #c88638;
+    border-radius: 28px;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: #783900;
+    text-align: center;
+    position: relative;
+}
+
+#final-victory-banner::before,
+#final-victory-banner::after{
+    content: '';
+    position: absolute;
+    top: -12px;
+    width: 12px;
+    height: 28px;
+    background: #f7d19b;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+}
+
+#welcome-panel,
+#victory-panel {
+    width: 100%;
+    max-width: 540px;
+}
+
+#win-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 20;
+    justify-content: center;
+    align-items: center;
+}
+
+#win-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#win-table td {
+    padding: 14px 10px;
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+}
+
+#phase2-victory-text {
+    width: 100%;
+    max-width: 480px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid #fff;
+    border-radius: 18px;
+}
+
+#cake-image {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+
+#win-buttons {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#win-buttons button {
+    flex: 1 1 180px;
+    min-width: 160px;
+}
+
+#final-victory-banner::before{
+    left: 32%;
+}
+
+#final-victory-banner::after{
+    left: 56%;
+}
+
+.pipe{
+    position: absolute;
+    width: 80px;
+    bottom: 0;
+    animation: pipe-animation 2s linear infinite;
+    z-index: 1;
+    
+}
+
+.mario{
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    margin-left: 310px ;
+    
+    
+}
+
+.mario-jump{
+    animation: mario-jump 500ms linear alternate;
+}
+
+.bowser{
+    position: absolute;
+    bottom: -35px;
+    z-index: 3;
+    overflow-y: visible;
+    width: 250px;
+    right: 350px;
+}
+
+.bowser-jump{
+
+    animation: bowser-jump 500ms linear alternate 
+}
+
+.peach{
+    position: absolute;
+    bottom: 0;
+    right: 120px;
+    z-index: 2;
+    width: 130px;
+    overflow-y: visible;
+    z-index: 1;
+    transform: scaleX(-1);
+}
+
+.peach-jump{
+
+    animation: bowser-jump 500ms linear alternate 
+}
+
+.bowserjr{
+    position: absolute;
+    top: 133px;
+    right: 120px;
+    z-index: 2;
+    width: 80px;
+    overflow-y: visible;
+    animation: bowserjr 15s infinite linear;
+    z-index: 2;
+}
+
+
+
+@keyframes pipe-animation{
+    from {
+        right: -80px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes bowser-jump{
+   0% { bottom: 0px
+
+    }
+
+    40% {
+        bottom: 130px;
+    }
+
+
+    50% {
+        bottom: 140px;
+    }
+
+    60% {
+        bottom: 130px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
+
+@keyframes peach-jump{
+   0% { bottom: 0px
+
+    }
+
+    40% {
+        bottom: 130px;
+    }
+
+
+    50% {
+        bottom: 140px;
+    }
+
+    60% {
+        bottom: 130px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
+
+@keyframes mario-jump{
+    0% { bottom: 0px
+
+    }
+
+    40% {
+        bottom: 130px;
+    }
+
+
+    50% {
+        bottom: 140px;
+    }
+
+    60% {
+        bottom: 130px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
+
+@keyframes clouds{
+    from {
+        right: -550px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+.ghost{
+    position: absolute;
+    bottom: -35px;
+    z-index: 3;
+    overflow-y: visible;
+    width: 250px;
+    right: 350px;
+}
+
+.ghost-jump{
+    animation: ghost-jump 500ms linear alternate;
+}
+
+@keyframes ghost-jump{
+   0% { bottom: 0px
+
+    }
+
+    40% {
+        bottom: 130px;
+    }
+
+
+    50% {
+        bottom: 140px;
+    }
+
+    60% {
+        bottom: 130px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
+
+.mansion-bg{
+    background: linear-gradient(180deg, #000000 0%, #222020 45%, #030000 100%);
+    border-bottom: 25px solid #1a1919;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
+}
